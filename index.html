@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <link href='https://fonts.googleapis.com/css?family=DM Serif Text' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<head>
+  <title>Survey Form - TS The Eras Tour</title>
+  <style>
+    body {
+        padding: 40px;
+        padding-left: 100px;
+        padding-right: 100px;
+        background-color: #ECEBEB;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h2, h3, legend {
+        font-stretch: condensed;
+        font-family: 'DM Serif Text', Times, serif;
+        color: #2E3350;
+    }
+
+    legend {
+        font-size: 24px;
+    }
+
+    h2, h3 {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    .headers {
+        line-height: 10px;
+    }
+    .personalinfo {
+        width: 70%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid black;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    select {
+        width: 50%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid black;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    fieldset {
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid black;
+    }
+
+    .concrat {
+        line-height: 30px;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+    .buttons {
+        padding: 10px 20px;
+        background-color: #2E3350;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+    }
+
+    .buttonsgrp {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+  </style>
+</head>
+<body>
+    <center>    
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/The_Eras_Tour_Logo.png" alt="Evangeline's Photo" width="auto" height="100">
+    </center>
+    <div class="headers">
+<h2>The Swiftie Experience</h2>
+    <h3>June 25, 2025 | Allegiant Stadium, Las Vegas, Nevada</h3>
+    </div>
+    
+  <form id="swiftSurvey">
+    <fieldset>
+      <legend>Personal Information</legend>
+      Name: <br>
+      <input type="text" name="name" id="name" class="personalinfo" required><br><br>
+      Email: <br>
+      <input type="email" name="email" id="email" class="personalinfo" required><br><br>
+      Age: 
+      <br><input type="number" name="age" id="age" min="10" max="100" class="personalinfo" required><br><br>
+      City Address: 
+      <br><input type="text" name="address" id="address" class="personalinfo" required><br><br>
+    </fieldset>
+    <br>
+    <fieldset class="concrat">
+      <legend>Concert Rating</legend>
+      <b>How satisfied are you with Taylor Swift's Concert?</b><br>
+      <input type="radio" name="rating" value="Very Satisfied">Very Satisfied<br>
+      <input type="radio" name="rating" value="Satisfied">Satisfied<br>
+      <input type="radio" name="rating" value="Neutral">Neutral<br>
+      <input type="radio" name="rating" value="Dissatisfied">Dissatisfied<br><br>
+
+    <b>What's your favorite Taylor Swift album? Choose as many as you want!</b><br>
+      <input type="checkbox" name="feature" value="Taylor Swift">Taylor Swift<br>
+      <input type="checkbox" name="feature" value="Fearless (Taylor's Version)">Fearless (Taylor's Version)<br>
+      <input type="checkbox" name="feature" value="Speak Now (Taylor's Version)">Speak Now (Taylor's Version)<br>
+      <input type="checkbox" name="feature" value="Red (Taylor's Version)">Red (Taylor's Version)<br>
+      <input type="checkbox" name="feature" value="1989 (Taylor's Version)">1989 (Taylor's Version)<br>
+      <input type="checkbox" name="feature" value="Reputation">Reputation<br>
+      <input type="checkbox" name="feature" value="Lover">Lover<br>
+      <input type="checkbox" name="feature" value="folklore">folklore<br>
+      <input type="checkbox" name="feature" value="evermore">evermore<br>
+      <input type="checkbox" name="feature" value="Midnights">Midnights<br>
+      <input type="checkbox" name="feature" value="The Tortured Poets Department">The Tortured Poets Department<br><br>
+
+      <b>Taylor Nation would love to contact you! What's your preferred contact option?</b><br>
+      <select name="contact_method" id="contact_method">
+        <option value="">--Please choose--</option>
+        <option value="Email">Email</option>
+        <option value="Phone">Phone</option>
+        <option value="Social Media (X, Instagram, Facebook)">Social Media (X, Instagram, Facebook)</option>
+      </select><br><br>
+    </fieldset>
+<br>
+    <fieldset class="concrat">
+      <legend>Additional Feedback</legend>
+      Comments:<br>
+      <textarea name="comments" rows="5" cols="85" placeholder="Tell us how we can improve..." width="70%"></textarea>
+    </fieldset><br>
+
+    <div style="text-align:center;" class="buttonsgrp">
+      <input type="reset" value="Reset Form" class="buttons">
+      <input type="submit" value="Submit Survey" class="buttons">
+    </div>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzmJpm9Y9Z3EtX6jVZSvFjuWzIu7KaTLCBZ16o-Y0iiDFXx-pBND0AhY5_PkSzO_tSX2A/exec';
+    const form = document.getElementById('swiftSurvey');
+  //When the user clicks the submit button, this function runs.
+  
+    form.addEventListener('submit', e => {
+
+      e.preventDefault(); //This stops the browser’s default action of reloading
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          alert("Form submitted successfully!");
+          form.reset();
+        })
+  
+        .catch(error => alert('Error!', error.message));
+  
+    });
+  
+  </script>
+</body>
+</html>
